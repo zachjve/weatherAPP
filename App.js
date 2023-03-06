@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import CurrentWeather from './components/CurrentWeather';
 
-const API_URL = (lat, lon) => `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=4cd715d145d0146d3005370780e530f8&lang=fr&units=metric`
+// const API_URL = (lat, lon) => `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=4cd715d145d0146d3005370780e530f8&lang=fr&units=metric`
 
 export default function App() {
   const [loading, setLoading] = useState(true)
@@ -28,13 +28,13 @@ export default function App() {
 
   const getWeather = async (location) => {
     try {
-      const response = await axios.get(API_URL(location.coords.latitude, location.coords.longitude))
+      const response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${location.coords.latitude}&lon=${location.coords.longitude}&appid=4cd715d145d0146d3005370780e530f8&lang=fr&units=metric`)
 
       setData(response.data)
       setLoading(false)
     }
     catch(err) {
-      console.log("Pas de reponse de l'API" + err)
+      console.log("Pas de reponse de l'API " + err)
     }
   }
 
@@ -47,7 +47,6 @@ export default function App() {
     );
   }
 
-  // console.log(location?.coords.latitude)
   return (
     <View style={styles.container}>
       <CurrentWeather data={data} />
@@ -59,7 +58,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
   },

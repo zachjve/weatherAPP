@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Image, Text, View } from 'react-native';
 import { isSameDay } from 'date-fns';
+
+const getIcon = (icon) => `http://openweathermap.org/img/wn/${icon}@2x.png` 
 
 export default function CurrentWeather({ data }) {
     const [weather, setWeather] = useState(null)
@@ -16,9 +18,14 @@ export default function CurrentWeather({ data }) {
     }, [data])
 
     return(
-        <View>
+        <View style={styles.container}>
             <Text>{data?.city?.name}</Text>
-            <Text>Aujourd'hui</Text>
+
+            <Image 
+                style={styles.icon} 
+                source={{ uri: getIcon(weather?.weather[0].icon) }}>
+            </Image>
+
             <Text>{Math.round(weather?.main.temp)} C°</Text>
             <Text>{weather?.weather[0].description}</Text>
         </View>
@@ -26,5 +33,13 @@ export default function CurrentWeather({ data }) {
 }
 
 const styles = StyleSheet.create({
-
+    container: {
+        backgroundColor: 'grey',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    icon: {
+        width: 100,
+        height: 100,
+    },
 });
