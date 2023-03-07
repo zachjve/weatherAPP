@@ -19,27 +19,40 @@ export default function CurrentWeather({ data }) {
 
     return(
         <View style={styles.container}>
-            <Text>{data?.city?.name}</Text>
+            <Text style={styles.location}>{data?.city?.name}</Text>
 
             <Image 
                 style={styles.icon} 
                 source={{ uri: getIcon(weather?.weather[0].icon) }}>
             </Image>
 
-            <Text>{Math.round(weather?.main.temp)} C°</Text>
-            <Text>{weather?.weather[0].description}</Text>
+            <Text style={styles.temperature}>{Math.round(weather?.main.temp)} °C</Text>
+            <Text style={styles.description}>{weather?.weather[0].description}</Text>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'grey',
-        alignItems: 'center',
-        justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 20
     },
     icon: {
-        width: 100,
-        height: 100,
+      width: 100,
+      height: 100,
+      marginVertical: 20
     },
-});
+    temperature: {
+      fontSize: 32,
+      fontWeight: 'bold'
+    },
+    location: {
+      fontSize: 24,
+      marginVertical: 10,
+      textAlign: 'center'
+    },
+    description: {
+      fontSize: 18,
+      marginVertical: 10
+    }
+  });

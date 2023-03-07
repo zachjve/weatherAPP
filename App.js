@@ -5,8 +5,7 @@ import * as Location from 'expo-location';
 import axios from 'axios';
 
 import CurrentWeather from './components/CurrentWeather';
-
-// const API_URL = (lat, lon) => `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=4cd715d145d0146d3005370780e530f8&lang=fr&units=metric`
+import Forecasts from './components/Forecasts';
 
 export default function App() {
   const [loading, setLoading] = useState(true)
@@ -50,6 +49,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <CurrentWeather data={data} />
+      <Forecasts data={data} />
       <StatusBar style="auto" />
     </View>
   );
@@ -58,8 +58,9 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 20
   },
 });
