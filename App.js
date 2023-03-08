@@ -4,7 +4,7 @@ import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import * as Location from 'expo-location';
 import axios from 'axios';
 
-import CurrentWeather from './components/CurrentWeather';
+import CurrentWeather from './components/Weather';
 import Forecasts from './components/Forecasts';
 
 export default function App() {
